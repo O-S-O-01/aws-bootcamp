@@ -1,4 +1,9 @@
 from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return 'Flask is working!'
 from flask import request
 from flask_cors import CORS, cross_origin
 import os
