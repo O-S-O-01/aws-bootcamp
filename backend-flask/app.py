@@ -14,16 +14,20 @@ from services.create_message import *
 from services.show_activity import *
 
 app = Flask(__name__)
-frontend = os.getenv('*')
-backend = os.getenv('*')
+frontend = os.getenv('FRONTEND_URL')
+backend = os.getenv('BACKEND_URL')
 origins = [frontend, backend]
 cors = CORS(
-  app, 
-  resources={r"/api/*": {"origins": origins}},
-  expose_headers="location,link",
-  allow_headers="content-type,if-modified-since",
+    app,
+    resources={r"/api/*": {"origins": origins}},
+    expose_headers="location,link",
+    allow_headers="content-type,if-modified-since",
   methods=["OPTIONS,GET,HEAD,POST"]
 )
+# Default route
+@app.route('/')
+def index():
+    return {"message": "Flask backend is running!"}
 
 @app.route("/api/message_groups", methods=['GET'])
 def data_message_groups():
