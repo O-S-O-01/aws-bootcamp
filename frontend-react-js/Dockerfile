@@ -8,6 +8,7 @@ ENV PORT=3000
 WORKDIR /app
 
 # Install dependencies
+RUN npm config set registry https://registry.npmmirror.com
 COPY package*.json ./
 RUN npm install
 
