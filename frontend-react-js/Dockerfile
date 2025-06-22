@@ -1,5 +1,5 @@
 
-FROM node:16.18
+FROM node:18
 
 # Set environment variable
 ENV PORT=3000
