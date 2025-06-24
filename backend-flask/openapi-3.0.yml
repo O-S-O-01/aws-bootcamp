@@ -2,27 +2,29 @@ openapi: '3.0.2'
 info:
   title: Cruddur Backend API
   version: '1.0'
-    
+
 servers:
   - url: https://api.server.test/v1
+
 paths:
   /api/activities/home:
     get:
-      description: 'Return a feed of activity based on all users'
+      description: Return a feed of activity based on all users
       tags:
         - activities
       responses:
         '200':
-          description: Returns an array of activities"
+          description: Returns an array of activities
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/Activity'
+
   /api/activities/search:
     get:
-      description: 'Return a feed of activity based on a search term'
+      description: Return a feed of activity based on a search term
       tags:
         - activities
       parameters:
@@ -35,16 +37,17 @@ paths:
             example: "#100DaysOfCloud"
       responses:
         '200':
-          description: Returns an array of activities"
+          description: Returns an array of activities
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/Activity'
+
   /api/activities:
     post:
-      description: Create a new activitiy eg. Creating a Crud
+      description: Create a new activity e.g. Creating a Crud
       tags:
         - activities
       requestBody:
@@ -62,16 +65,15 @@ paths:
                   type: string
       responses:
         '200':
-          description: Returns a recently created activity"
+          description: Returns a recently created activity
           content:
             application/json:
               schema:
-                type: object
-                items:
-                  $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity'
+
   /api/activities/@{handle}:
     get:
-      description: 'Return a feed of activity for a specific user'
+      description: Return a feed of activity for a specific user
       tags:
         - activities
       parameters:
@@ -83,30 +85,32 @@ paths:
             type: string
       responses:
         '200':
-          description: Returns an array of activities"
+          description: Returns an array of activities
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/Activity'
+
   /api/message_groups:
     get:
-      description: 'Return a list of two way private conversations for the user'
+      description: Return a list of two-way private conversations for the user
       tags:
         - messages
       responses:
         '200':
-          description: Returns an array of messages groups for a specific user
+          description: Returns an array of message groups for a specific user
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/MessageGroup'
+
   /api/messages/@{handle}:
     get:
-      description: 'Returns private communication between two users'
+      description: Returns private communication between two users
       tags:
         - messages
       parameters:
@@ -122,12 +126,13 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: '#/components/schemas/Message'
+
   /api/messages:
     post:
-      description: 'Create a direct message between two users'
+      description: Create a direct message between two users
       tags:
         - messages
       requestBody:
@@ -145,9 +150,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Message'
+                $ref: '#/components/schemas/Message'
 
 components:
   schemas:
@@ -181,6 +184,7 @@ components:
         expires_at:
           type: string
           example: "2023-02-06T18:11:03+00:00"
+
     Reply:
       type: object
       properties:
@@ -227,6 +231,7 @@ components:
         created_at:
           type: string
           example: "2023-02-06T18:11:03+00:00"
+
     MessageGroup:
       type: object
       properties:
